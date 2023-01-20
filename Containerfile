@@ -1,11 +1,4 @@
-# We use the "TFM" nomenclature here because the more readable DOTNET_VERSION causes a problem later on.  Specifically,
-# in COPY command when building the runtime image, the TFM (target framework moniker) is added to the path.  However,
-# that copy command is actually run side the runtime container image and the runtime container image defines an
-# environment variable called DOTNET_VERSION.  Environment variables in the image take precedence over ARGs and that
-# environment variable has the full semantic version (e.g., 6.0.9) which is not appropriate for the path expansion.
-# Plus, for the pedants TFM is the more correct term anyways.
 ARG DOTNET_TFM=6.0
-
 
 FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_TFM} AS build
 
